@@ -7,27 +7,31 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@Table(name="product")
 @JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
 public class Product implements Serializable {
     @Id
-    @GeneratedValue
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="pid")
     private Integer pid;
     /**
      * 商品名
      */
-    @Column
+    @Column(name="pname")
     private String pname;
     /**
      * 商品价格
      */
     @Column
     private Double price;
+
+
+
     /**
      * 商品所属类别名
      */
     @Column
-    private String pClassName;
+    private String pclassName;
     /**
      * 主图
      */
@@ -52,10 +56,13 @@ public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Product(String pname, Double price, String pClassName, String image, String desc, Integer shopId, Date pdate) {
+    public Product() {
+    }
+
+    public Product(String pname, Double price, String pclassName, String image, String desc, Integer shopId, Date pdate) {
         this.pname = pname;
         this.price = price;
-        this.pClassName = pClassName;
+        this.pclassName = pclassName;
         this.image = image;
         this.desc = desc;
         this.shopId = shopId;
@@ -85,14 +92,14 @@ public class Product implements Serializable {
     public void setPrice(Double price) {
         this.price = price;
     }
-
-    public String getpClassName() {
-        return pClassName;
+    public String getPclassName() {
+        return pclassName;
     }
 
-    public void setpClassName(String pClassName) {
-        this.pClassName = pClassName;
+    public void setPclassName(String pclassName) {
+        this.pclassName = pclassName;
     }
+
 
     public String getImage() {
         return image;

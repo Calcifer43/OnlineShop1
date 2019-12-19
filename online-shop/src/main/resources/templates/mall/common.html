@@ -34,20 +34,23 @@
 
                 </dl>
                 <script>
-                    //                    <![CDATA[
-                    //加载分类
-                    $.get("../mall/admin/classification/list.do?type=1&pageindex=-1", function (data) {
-                        if (data.state == 0) {
-                            var list = $("#category");
-                            $(data.data).each(function (index, item) {
-                                var cat = $("<dd><a href='../mall/product/category.html?cid="+item.id+"'>" + item.cname + "</a></dd>");
-                                list.append(cat);
-                            })
-                        } else {
-                            alert(data.message);
+                    function showCategory() {
+                        var xmlHttp=new XMLHttpRequest();
+                        xmlHttp.open("GET", "/getProductClass", true);
+                        xmlHttp.onreadystatechange = function () {
+                            if (xmlHttp.readyState == 4) {
+                                var data = xmlHttp.responseText;
+                                var obj = JSON.parse(data);
+                                var listbook = '';
+                                for (var i in obj) {
+                                    listbook+=`<dd><a href="/displayProduct?pclassName=`+obj[i]+`">`+obj[i]+`</a></dd>`;
+                                    //alert(obj[i]);
+                                }
+                                document.getElementById("category").innerHTML = listbook;
+                            }
                         }
-                    });
-                    //                    ]]>
+                        xmlHttp.send();
+                    }
                 </script>
             </li>
             <li class="layui-nav-item">
@@ -58,8 +61,8 @@
                 </a>
                 <dl class="layui-nav-child">
                     <dd th:if="${session.user != null}"><a href="/logout.do"><i class="fa fa-sign-out"></i> 退出登录</a></dd>
-                    <dd th:if='${session.user!=null and !(session.user.getFlag().equals("3"))}'><a href=""><i class="fa fa-list"></i> 我的订单</a></dd>
-                    <dd th:if='${session.user != null and !(session.user.getFlag().equals("3"))}'><a href=""><i class="fa fa-shopping-cart"></i> 购物车</a></dd>
+                    <dd th:if='${session.user!=null and !(session.user.getFlag().equals("3"))}'><a href="/toList.html"><i class="fa fa-list"></i> 我的订单</a></dd>
+                    <dd th:if='${session.user != null and !(session.user.getFlag().equals("3"))}'><a href="/toCart.html"><i class="fa fa-shopping-cart"></i> 购物车</a></dd>
                     <dd th:if='${session.user!=null and session.user.getFlag().equals("2")}'><a href=""><i class="fa fa-shopping-cart"></i> 我的帖子</a></dd>
                     <dd th:if='${session.user!=null and session.user.getFlag().equals("3")}'><a href=""><i class="fa fa-shopping-cart"></i> 创建我的商铺</a></dd>
                     <dd th:if='${session.user!=null and session.user.getFlag().equals("3")}'><a href=""><i class="fa fa-shopping-cart"></i> 查看我的商铺</a></dd>

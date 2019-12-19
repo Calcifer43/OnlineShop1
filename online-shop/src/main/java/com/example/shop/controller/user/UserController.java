@@ -4,6 +4,8 @@ import com.example.shop.entity.User;
 import com.example.shop.entity.pojo.ResultBean;
 import com.example.shop.service.UserService;
 import com.example.shop.service.exception.LoginException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -118,7 +120,7 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping("/checkUsername.do")
-    public ResultBean<Boolean> checkUsername(String username){
+    public ResultBean<Boolean> checkUsername(String username) throws JsonProcessingException {
         List<User> users = userService.findByUsername(username);
         if (users==null||users.isEmpty()){
             return new ResultBean<>(true);

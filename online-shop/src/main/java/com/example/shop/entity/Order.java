@@ -11,7 +11,7 @@ import java.util.Date;
 @Table(name = "`order`")
 public class Order implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer id;
     /**
