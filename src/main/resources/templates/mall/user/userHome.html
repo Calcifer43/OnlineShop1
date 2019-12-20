@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <meta name="renderer" content="webkit"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title>SkyMall | 商城</title>
+        <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+        <link rel="stylesheet" th:href="@{/layui/css/layui.css}"/>
+        <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+        <link th:href="@{/css/common.css}" rel="stylesheet" type="text/css"/>
+        <script th:src="@{/layui/jquery-3.2.1.min.js}"></script>
+        <script th:src="@{/layui/layui.js}"></script>
+        <style>
+
+        </style>
+
+</head>
+<body onload="showCategory(),showBook()">
+
+<div>
+
+
+</div>
+
+<div th:replace="mall/common::head"></div>
+
+<h2>用户的首界面</h2>
+<div style="text-align: center">
+<form action="">
+        搜索：<input align="center" type="text" name="query" placeholder="请输入商品关键词">
+</form>
+</div>
+
+<div id="showProduct">
+
+</div>
+
+
+
+<div th:replace="mall/common::foot"></div>
+
+
+<script>
+
+        function showBook() {
+                var xmlHttp=new XMLHttpRequest();
+                xmlHttp.open("GET", "/findAllProduct", true);
+                xmlHttp.onreadystatechange = function () {
+                        if (xmlHttp.readyState == 4) {
+                                var data = xmlHttp.responseText;
+                                var obj = JSON.parse(data);
+                                var listbook = '';
+                                for (var i in obj) {
+                                        var productname = obj[i].pname;
+                                        var productId=obj[i].pid;
+                                        var image=obj[i].image;
+                                        listbook += `<div class="col-sm-9 col-md-3"><div class="thumbnail" ><img src="../image/`+image+`" } alt="图片描述插入"/><div class="caption">  <h4>`
+                                                + productname +
+                                                `</h4>` +
+                                                `<p><a href="/addCart.do" class="btn btn-primary" role="button">加入购物车</a>
+                                                    <a href="/get.html?id=`+productId+ `" class="btn btn-default" role="button">查看详情` +
+                                                `</a></p></div></div> </div>`;
+                                }
+                                document.getElementById("showProduct").innerHTML = listbook;
+                        }
+                }
+                xmlHttp.send();
+        }
+
+
+</script>
+
+
+</body>
+</html>
