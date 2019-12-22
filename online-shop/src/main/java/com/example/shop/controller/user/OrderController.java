@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
+@RequestMapping("mall/order")
 public class OrderController {
     @Autowired
     private OrderService orderService;
@@ -93,7 +94,7 @@ public class OrderController {
      * @return
      * @throws IOException
      */
-    @RequestMapping("receive.do")
+    @RequestMapping("/receive.do")
     @ResponseBody
     public ResultBean<Boolean> receive(int orderId, HttpServletResponse response) throws IOException {
         orderService.receive(orderId);

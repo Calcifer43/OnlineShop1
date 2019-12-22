@@ -9,7 +9,7 @@
     这里包含了每个页面的公共模块
 -->
 <!--头部 导航条模块-->
-<div class="layui-header header" th:fragment="head">
+<div class="layui-header layui-bg-blue header" th:fragment="head">
     <script>
         //        <![CDATA[
         var layer;
@@ -27,30 +27,33 @@
         <!--<ul class="layui-nav layui-layout-left">-->
         <!---->
         <!--</ul>-->
-        <ul class="layui-nav layui-layout-right">
+        <ul class="layui-nav  layui-layout-right">
+            <li class="layui-nav-item" style="color:#393D49;">
+                <a href="/index.html">商城首页</a>
+            </li>
+            <li class="layui-nav-item" style="color:#393D49;">
+                <a href="/mall/post/toList.html">查看帖子</a>
+            </li>
             <li class="layui-nav-item" style="color:#393D49;">
                 <a href="javascript:;">分类</a>
                 <dl class="layui-nav-child" id="category">
 
                 </dl>
                 <script>
-                    function showCategory() {
-                        var xmlHttp=new XMLHttpRequest();
-                        xmlHttp.open("GET", "/getProductClass", true);
-                        xmlHttp.onreadystatechange = function () {
-                            if (xmlHttp.readyState == 4) {
-                                var data = xmlHttp.responseText;
-                                var obj = JSON.parse(data);
-                                var listbook = '';
-                                for (var i in obj) {
-                                    listbook+=`<dd><a href="/displayProduct?pclassName=`+obj[i]+`">`+obj[i]+`</a></dd>`;
-                                    //alert(obj[i]);
-                                }
-                                document.getElementById("category").innerHTML = listbook;
-                            }
+                    //                    <![CDATA[
+                    //加载分类
+                    $.get("/admin/classification/list.do?type=1&pageindex=-1", function (data) {
+                        if (data.state == 0) {
+                            var list = $("#category");
+                            $(data.data).each(function (index, item) {
+                                var cat = $("<dd><a href='/mall/product/category.html?cid="+item.id+"'>" + item.cname + "</a></dd>");
+                                list.append(cat);
+                            })
+                        } else {
+                            alert(data.message);
                         }
-                        xmlHttp.send();
-                    }
+                    });
+                    //                    ]]>
                 </script>
             </li>
             <li class="layui-nav-item">
@@ -60,16 +63,16 @@
                     <span th:if="${session.user != null}" th:text="'欢迎您!&nbsp;' + ${session.user.username}">请登陆</span>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd th:if="${session.user != null}"><a href="/logout.do"><i class="fa fa-sign-out"></i> 退出登录</a></dd>
-                    <dd th:if='${session.user!=null and !(session.user.getFlag().equals("3"))}'><a href="/toList.html"><i class="fa fa-list"></i> 我的订单</a></dd>
-                    <dd th:if='${session.user != null and !(session.user.getFlag().equals("3"))}'><a href="/toCart.html"><i class="fa fa-shopping-cart"></i> 购物车</a></dd>
-                    <dd th:if='${session.user!=null and session.user.getFlag().equals("2")}'><a href=""><i class="fa fa-shopping-cart"></i> 我的帖子</a></dd>
+                    <dd th:if="${session.user != null}"><a href="/mall/user/logout.do"><i class="fa fa-sign-out"></i> 退出登录</a></dd>
+                    <dd th:if='${session.user!=null and !(session.user.getFlag().equals("3"))}'><a href="/mall/order/toList.html"><i class="fa fa-list"></i> 我的订单</a></dd>
+                    <dd th:if='${session.user != null and !(session.user.getFlag().equals("3"))}'><a href="/mall/product/toCart.html"><i class="fa fa-shopping-cart"></i> 购物车</a></dd>
+                    <dd th:if='${session.user!=null and session.user.getFlag().equals("2")}'><a href="/mall/post/toList.html"><i class="fa fa-shopping-cart"></i> 我的帖子</a></dd>
                     <dd th:if='${session.user!=null and session.user.getFlag().equals("3")}'><a href=""><i class="fa fa-shopping-cart"></i> 创建我的商铺</a></dd>
                     <dd th:if='${session.user!=null and session.user.getFlag().equals("3")}'><a href=""><i class="fa fa-shopping-cart"></i> 查看我的商铺</a></dd>
-                    <dd th:if="${session.user == null}"><a href="/toLogin.html"><i class="fa fa-sign-in"></i> 登录</a></dd>
-                    <dd th:if="${session.user == null}"><a href="/toRegister.html"><i class="fa fa-user-plus"></i> 注册</a></dd>
-
+                    <dd th:if="${session.user == null}"><a href="/mall/user/toLogin.html"><i class="fa fa-sign-in"></i> 登录</a></dd>
+                    <dd th:if="${session.user == null}"><a href="/mall/user/toRegister.html"><i class="fa fa-user-plus"></i> 注册</a></dd>
                 </dl>
+
             </li>
             <!--<li class="layui-nav-item"><a href="">退了</a></li>-->
         </ul>

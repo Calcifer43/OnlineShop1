@@ -12,4 +12,11 @@ public interface OrderItemDao extends JpaRepository<OrderItem, Integer> {
      * @return
      */
     List<OrderItem> findByOrderId(int orderId);
+
+    /**
+     *
+     * @param pid
+     * @return
+     */
+    List<OrderItem> findAllByProductId(int pid);
 }

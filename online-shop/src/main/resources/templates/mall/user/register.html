@@ -78,9 +78,11 @@
 
                         <div class="layui-form-item">
                             <label class="layui-form-label">请输入你想注册的角色：</label>
-                            <input type="checkbox" value="1" name="flag">普通用户
-                            <input type="checkbox" value="2" name="flag">商城会员
-                            <input type="checkbox" value="3" name="flag">商家
+                            <div class="layui-input-block">
+                                <input type="radio" name="flag" value="1" title="普通用户" checked="">
+                                <input type="radio" name="flag" value="2" title="商城会员">
+                                <input type="radio" name="flag" value="3" title="商家"
+                             </div>
                         </div>
 
                         <div class="layui-form-item">

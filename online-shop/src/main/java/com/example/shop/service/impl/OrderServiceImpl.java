@@ -81,6 +81,11 @@ public class OrderServiceImpl implements OrderService {
         return list;
     }
 
+    @Override
+    public List<OrderItem> findItemsByPid(int pid) {
+        return orderItemDao.findAllByProductId(pid);
+    }
+
     /**
      * 更改订单状态
      *
@@ -160,7 +165,7 @@ public class OrderServiceImpl implements OrderService {
         order.setTotal(total);
         orderDao.save(order);
         //重定向到订单列表页面
-        response.sendRedirect("/toList.html");
+        response.sendRedirect("/mall/order/toList.html");
     }
 
     /**

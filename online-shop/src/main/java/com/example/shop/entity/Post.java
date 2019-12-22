@@ -2,17 +2,14 @@ package com.example.shop.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 public class Post implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer postId;  //帖子Id
     /**
@@ -31,12 +28,27 @@ public class Post implements Serializable {
     @Column
     private Integer userId;
 
+    @Column
+    private String postImage;
+
     private static final long serialVersionUID = 1L;
 
     public Post(String postTitle, String postInfo, Integer userId) {
         this.postTitle = postTitle;
         this.postInfo = postInfo;
         this.userId = userId;
+    }
+
+    public Post() {
+        super();
+    }
+
+    public String getPostImage() {
+        return postImage;
+    }
+
+    public void setPostImage(String postImage) {
+        this.postImage = postImage;
     }
 
     public Integer getPostId() {

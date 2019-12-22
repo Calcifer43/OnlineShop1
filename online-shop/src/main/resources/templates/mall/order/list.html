@@ -113,10 +113,15 @@
                 if (state == 1) {
                     operter.append($("<button onclick='pay(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-green'>付款</button>"));
                 }
+
                 tr.append(operter);
                 tbody.append(tr);
 
             });
+        }
+
+        function jumpComment(){
+            window.location.href="/mall/product/"
         }
 
         // 获取订单详情
@@ -129,7 +134,8 @@
                     $(data.data).each(function (index, item) {
                         var tr = $("<tr style='max-height: 200px;'></tr>");
                         tr.append($("<td ><img class='img_responsive' src='" + item.product.image + "'/></td>"));
-                        tr.append($("<td style='text-align: left;width: 200px;'><a style='color: #01AAED;text-decoration: underline;' href='/mall/product/get.html?id="+item.productId+"'>" + item.product.title + "</a></td>"));
+                        tr.append($("<td style='text-align: left;width: 200px;'><a style='color: #01AAED;text-decoration: underline;' href='/mall/product/get.html?id="+item.productId+"'>" + item.product.pname + "</a></td>"));
+                        tr.append($("<td  th:if=  style='text-align: left;width: 200px;'><a style='color: #01AAED;text-decoration: underline;' href='/mall/product/get.html?id="+item.productId+"'>" + "去评价" + "</a></td>"));
                         tr.append($("<td>单价：" + item.product.price + "</td>"));
                         tr.append($("<td>数量：" + item.count + "</td>"));
                         tr.append($("<td>总价：￥" + item.subTotal + "</td>"));

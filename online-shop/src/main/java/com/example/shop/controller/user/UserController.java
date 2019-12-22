@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-
+@RequestMapping("mall/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -35,6 +35,12 @@ public class UserController {
     public String toRegister() {
         return "mall/user/register";
     }
+
+    @RequestMapping("/toUserHome.html")
+    public String toFirst() {
+        return "mall/user/userHome";
+    }
+
 
     /**
      * 打开登录页面
@@ -64,18 +70,19 @@ public class UserController {
             //登录成功 重定向到不同的页面
             request.getSession().setAttribute("user", user);
             if(user.getFlag().equals("1")||user.getFlag().equals("2")){
-                return "/mall/user/userHome";
+                return "/mall/index.html";
             }else if(user.getFlag().equals("3")){
-                return "/mall/seller/sellerHome";
-            }else{
-                return "/mall/admin/adminHome";
+                return "/seller/index";
             }
-            //response.sendRedirect("/mall/index.html");
+            response.sendRedirect("/mall/index.html");
         } else {
             throw new LoginException("登录失败！ 用户名或者密码错误");
         }
 
+        return "mall/error.html";
     }
+
+
 
     /**
      * 注册

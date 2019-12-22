@@ -26,6 +26,45 @@ public interface ProductService {
     Page<Product> findAll(Pageable pageable);
 
     /**
+     *
+     * @param shopId
+     * @param pageable
+     * @return
+     */
+    Page<Product> findAllByShopId(int shopId,Pageable pageable);
+
+
+
+    /**
+     * 查找热门商品
+     * @return
+     */
+    List<Product> findHotProduct();
+
+    /**
+     * 查找最新商品
+     * @param pageable
+     * @return
+     */
+    List<Product> findNewProduct(Pageable pageable);
+
+    /**
+     * 根据一级分类查找商品
+     * @param cid
+     * @param pageable
+     * @return
+     */
+    List<Product> findByCid(int cid,Pageable pageable);
+
+    /**
+     * 根据二级分类查找商品
+     * @param csid
+     * @param pageable
+     * @return
+     */
+    List<Product> findByCsid(int csid,Pageable pageable);
+
+    /**
      * 更新
      *
      * @param product
@@ -50,10 +89,6 @@ public interface ProductService {
     void delById(int id);
 
 
-    /**
-     * 查询所有商品类别
-     */
-    List<String> findAllPclassName(String pid);
 
 
 }

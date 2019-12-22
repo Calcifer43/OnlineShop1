@@ -12,7 +12,7 @@ import java.util.Date;
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="pid")
+    @Column
     private Integer pid;
     /**
      * 商品名
@@ -25,13 +25,18 @@ public class Product implements Serializable {
     @Column
     private Double price;
 
-
-
     /**
-     * 商品所属类别名
+     * 二级分类Id
      */
     @Column
-    private String pclassName;
+    private int csid;
+
+    /**
+     * 是否热门商品
+     */
+    @Column
+    private Integer isHot;
+
     /**
      * 主图
      */
@@ -54,19 +59,18 @@ public class Product implements Serializable {
     private Date pdate;
 
 
+    @Transient
+    private Classification categorySec;
+
+
+
     private static final long serialVersionUID = 1L;
 
     public Product() {
     }
 
-    public Product(String pname, Double price, String pclassName, String image, String desc, Integer shopId, Date pdate) {
-        this.pname = pname;
-        this.price = price;
-        this.pclassName = pclassName;
-        this.image = image;
-        this.desc = desc;
-        this.shopId = shopId;
-        this.pdate = pdate;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Integer getPid() {
@@ -92,14 +96,22 @@ public class Product implements Serializable {
     public void setPrice(Double price) {
         this.price = price;
     }
-    public String getPclassName() {
-        return pclassName;
+
+    public int getCsid() {
+        return csid;
     }
 
-    public void setPclassName(String pclassName) {
-        this.pclassName = pclassName;
+    public void setCsid(int csid) {
+        this.csid = csid;
     }
 
+    public Integer getIsHot() {
+        return isHot;
+    }
+
+    public void setIsHot(Integer isHot) {
+        this.isHot = isHot;
+    }
 
     public String getImage() {
         return image;
@@ -133,7 +145,11 @@ public class Product implements Serializable {
         this.pdate = pdate;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public Classification getCategorySec() {
+        return categorySec;
+    }
+
+    public void setCategorySec(Classification categorySec) {
+        this.categorySec = categorySec;
     }
 }

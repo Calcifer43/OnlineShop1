@@ -46,6 +46,10 @@ public interface OrderService {
      */
     List<Order> findAllExample(Example<Order> example);
 
+
+
+
+
     /**
      * 更新
      *
@@ -77,6 +81,13 @@ public interface OrderService {
      * @return
      */
     List<OrderItem> findItems(int orderId);
+
+    /**
+     * 通过商品号查找订单号
+     * @param pid
+     * @return
+     */
+    List<OrderItem> findItemsByPid(int pid);
 
     /**
      * 更改订单状态

@@ -1,6 +1,8 @@
 package com.example.shop.service.impl;
 
+import com.example.shop.dao.ClassificationDao;
 import com.example.shop.dao.ProductDao;
+import com.example.shop.entity.Classification;
 import com.example.shop.entity.Product;
 import com.example.shop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,16 +20,78 @@ public class ProductServiceImpl  implements ProductService {
 
     @Autowired
     private ProductDao productDao;
+    @Autowired
+    private ClassificationDao classificationDao;
 
-    @Override //通过产品Id查找该产品的信息
+    @Override
     public Product findByPId(int pid) {
         return productDao.getOne(pid);
     }
 
     @Override
     public Page<Product> findAll(Pageable pageable) {
-        return null;
+        return productDao.findAll(pageable);
     }
+
+    @Override
+    public Page<Product> findAllByShopId(int shopId, Pageable pageable) {
+        return productDao.findAllByShopId(shopId,pageable);
+    }
+
+    /**
+     * 查找热门商品
+     *
+     * @return
+     */
+    @Override
+    public List<Product> findHotProduct() {
+        return productDao.findByIsHot(1, null);
+    }
+
+    /**
+     * 查找最新商品
+     *
+     * @param pageable
+     * @return
+     */
+    @Override
+    public List<Product> findNewProduct(Pageable pageable) {
+        // 查找两周内上架的商品
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.add(Calendar.DAY_OF_MONTH, -14);
+        return productDao.findNew(pageable);
+    }
+
+    /**
+     * 根据一级分类查找商品
+     *
+     * @param cid
+     * @param pageable
+     * @return
+     */
+    @Override
+    public List<Product> findByCid(int cid, Pageable pageable) {
+        //查找出所有二级分类
+        List<Classification> sec = classificationDao.findByParentId(cid);
+        List<Integer> secIds = new ArrayList<>();
+        for (Classification classification : sec) {
+            secIds.add(classification.getId());
+        }
+        return productDao.findByCsidIn(secIds,pageable);
+    }
+
+    /**
+     * 根据二级分类查找商品
+     *
+     * @param csid
+     * @param pageable
+     * @return
+     */
+    @Override
+    public List<Product> findByCsid(int csid, Pageable pageable) {
+        return productDao.findByCsid(csid,pageable);
+    }
+
 
     @Override
     public void update(Product product) {
@@ -35,32 +100,23 @@ public class ProductServiceImpl  implements ProductService {
 
     @Override
     public int create(Product product) {
-       return productDao.save(product).getPid();
+        return productDao.save(product).getPid();
     }
 
     @Override
-    public void delById(int pid) {
-        productDao.deleteById(pid);
+    public void delById(int id) {
+        productDao.deleteById(id);
     }
 
-
-    //查找商品的所有分类
-    @Override
-    public List<String> findAllPclassName(String pid) {
-        return productDao.findAllPclassName(pid);
-    };
-
-    //根据商品类别(中文)查找出该类别的商品
-    public List<Product>  findAllByPclassName(String pclassName){
-           return productDao.findAllByPclassName(pclassName);
-    };
     //根据关键词查询商品
-    public  List<Product> findByPnameLike(String keyword){
-        return productDao.findByPnameLike(keyword);
+    public  List<Product> findByPnameLike(String keyword,Pageable pageable){
+        return productDao.findByPnameLike(keyword,pageable);
     };
 
     //查询所有商品
     public  List<Product> findAllProduct(){
         return productDao.findAll();
     };
+
+
 }
