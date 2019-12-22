@@ -1,12 +1,22 @@
 package com.example.shop.service.impl;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 import com.example.shop.dao.ShopDao;
 import com.example.shop.entity.Shop;
 import com.example.shop.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.stereotype.Service;
 
+=======
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+
+import java.awt.print.Pageable;
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 import java.util.List;
 
 @Service
@@ -63,7 +73,11 @@ public class ShopServiceImpl implements ShopService {
      */
     @Override//可以
     public void delete(int shopId) {
+<<<<<<< HEAD
         shopDao.deleteByShopId(shopId);
+=======
+        shopDao.delete(shopId);
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 
     }
 
@@ -73,7 +87,11 @@ public class ShopServiceImpl implements ShopService {
      */
     @Override
     public void update(Shop shop) {
+<<<<<<< HEAD
         Shop s=shopDao.getOne(shop.getShopId());
+=======
+        Shop s=shopDao.findOne(shop.getShopId());
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
         s.setShopName(shop.getShopName());
         s.setShopTel(shop.getShopTel());
         s.setSellerId(shop.getSellerId());
@@ -85,7 +103,11 @@ public class ShopServiceImpl implements ShopService {
 
     @Override  //可以
     public Shop findById(int id) {
+<<<<<<< HEAD
         return shopDao.getOne(id);
+=======
+        return shopDao.findOne(id);
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
     }
 
 

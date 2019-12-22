@@ -6,7 +6,11 @@
 
     <meta charset="utf-8"/>
 
+<<<<<<< HEAD
     <title>商家管理</title>
+=======
+    <title>商城后台管理</title>
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
 
@@ -70,7 +74,11 @@
 
                 <!--<img src="media/image/logo.png" class="" alt="logo"/>-->
                 <i class="fa fa-cubes"></i>
+<<<<<<< HEAD
                 <b>商家管理</b>
+=======
+                <b>商城后台管理系统</b>
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 
             </a>
 
@@ -95,9 +103,17 @@
 
                 <li class="dropdown user ">
 
+<<<<<<< HEAD
 
 
                   <span th:text="${session.user.username}"></span>
+=======
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        <i class="fa fa-user-circle"></i>
+
+                  <span th:text="${session.login_user.username}"></span>
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 
                         <i class="fa fa-caret-down"></i>
 
@@ -219,7 +235,11 @@
     <div id="content" class="page-content">
         <iframe id="mainFrame" frameborder="0" src=""></iframe>
     </div>
+<<<<<<< HEAD
     <span id="idd" type="hidden" th:text="${session.user.id}"></span>
+=======
+    <span id="idd" type="hidden" th:text="${session.login_user.id}"></span>
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 
     <!-- END PAGE -->
 
@@ -266,6 +286,12 @@
 
 <!--[if lt IE 9]>
 
+<<<<<<< HEAD
+=======
+<script th:src="media/js/excanvas.min.js}"></script>
+
+<script th:src="media/js/respond.min.js}"></script>
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 
 <![endif]-->
 
@@ -345,9 +371,12 @@
 
             $("#mainFrame").attr("src", "/seller/shop/toDel?id="+id);
             return;
+<<<<<<< HEAD
         }else if('order'==page){
             $("#mainFrame").attr("src", "/seller/order/toList.html");
             return;
+=======
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
         }
         $("#mainFrame").attr("src", "/seller/shop/toList");
     }
@@ -366,4 +395,8 @@
 
 <!-- END BODY -->
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1

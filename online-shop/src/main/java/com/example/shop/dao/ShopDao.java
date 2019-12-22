@@ -2,6 +2,11 @@ package com.example.shop.dao;
 
 import com.example.shop.entity.Shop;
 import org.springframework.data.jpa.repository.JpaRepository;
+<<<<<<< HEAD
+=======
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 
 import java.util.List;
 
@@ -20,7 +25,11 @@ public interface ShopDao extends JpaRepository<Shop, Integer> {
      * @param shopName
      * @return
      */
+<<<<<<< HEAD
    Shop findByShopNameAndSellerId(String shopName, int sellerId);
+=======
+   Shop findByShopNameAndSellerId(String shopName,int sellerId);
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 
      /**
      * 商家根据自己的id和关键字查询商铺
@@ -28,14 +37,22 @@ public interface ShopDao extends JpaRepository<Shop, Integer> {
      * @return
      */
 
+<<<<<<< HEAD
      List<Shop> findByShopNameLikeAndSellerId(String keyword, int sellerId);
+=======
+     List<Shop> findByShopNameLikeAndSellerId(String keyword,int sellerId);
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
     /**
      * 删除商铺
      * @param shopId
      * @return
      */
 
+<<<<<<< HEAD
     void deleteByShopId(int shopId);
+=======
+    void delete(int shopId);
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 
 //    /**
 //     * 商家修改商铺

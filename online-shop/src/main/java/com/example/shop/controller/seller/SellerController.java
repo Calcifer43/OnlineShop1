@@ -1,12 +1,22 @@
+<<<<<<< HEAD
 package com.example.shop.controller.seller;
 
 
 import com.example.shop.entity.AdminUser;
 import com.example.shop.service.AdminUserService;
+=======
+package com.example.shop.controller;
+
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+<<<<<<< HEAD
+=======
+import com.example.shop.entity.AdminUser;//这两个需要待改
+import com.example.shop.service.AdminUserService;//这两个需要待改
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

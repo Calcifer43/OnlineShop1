@@ -121,8 +121,12 @@
                     html+="<td>"+sellerId+"</td>";
                     html+="<td>"+
                         "<button style='margin-right:20px;' class='btn mini green' onclick='edit(" + shopid+ ")'><i class='fa fa-edit'></i>编辑</button>"+
+<<<<<<< HEAD
                         "<button style='margin-right:20px;'  class='btn mini green' onclick='createP("+ shopid +")'><i class='fa fa-trash'></i> 增加商品</button>"+
                         "<button class='btn mini blue' onclick='queryShopProduct(" + shopid + ")'><i class='fa fa-edit'></i>查看店铺商品</button>"
+=======
+                        "<button class='btn mini red' onclick='createP("+ shopid +")'><i class='fa fa-trash'></i> 增加商品</button>"
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
                         +"</td>";
                html+="</tr>";
                 }
@@ -163,8 +167,12 @@
                     html += "<td>" + sellerId + "</td>";
                     html += "<td>" +
                         "<button style='margin-right:20px;' class='btn mini green' onclick='edit(" + shopid + ")'><i class='fa fa-edit'></i>编辑</button>" +
+<<<<<<< HEAD
                         "<button class='btn mini blue' onclick='createP(" + shopid + ")'><i class='fa fa-edit'></i> 增加商品</button>"+
                         "<button class='btn mini blue' onclick='queryShopProduct(" + shopid + ")'><i class='fa fa-edit'></i>查看店铺商品</button>"
+=======
+                        "<button class='btn mini green' onclick='createP(" + shopid + ")'><i class='fa fa-trash'></i> 增加商品</button>"
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
                         + "</td>";
                     html += "</tr>";
                 }
@@ -179,13 +187,21 @@
     }
 
      function createP(id) {
+<<<<<<< HEAD
          window.location.href = "/seller/product/createProduct.html?id=" + id;
      }
 
      function queryShopProduct(id){
         window.location.href="/seller/product/ShopProduct.html?id="+id;
+=======
+         window.location.href = "createProduct.html?id=" + id;
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
      }
 </script>
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1

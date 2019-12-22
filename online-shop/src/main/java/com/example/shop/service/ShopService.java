@@ -1,9 +1,16 @@
 package com.example.shop.service;
 
+<<<<<<< HEAD
 
 
 import com.example.shop.entity.Shop;
 
+=======
+import com.example.shop.entity.Shop;
+import org.springframework.data.domain.Page;
+
+import java.awt.print.Pageable;
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 import java.util.List;
 
 public interface ShopService {
@@ -23,14 +30,22 @@ public interface ShopService {
      * @param shopName
      * @return
      */
+<<<<<<< HEAD
     Shop findByShopNameAndSellerId(String shopName, int sellerId);
+=======
+    Shop findByShopNameAndSellerId(String shopName,int sellerId);
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 
     /**
      * 商家根据自己的id和关键字查询商铺
      * @param keyword
      * @return
      */
+<<<<<<< HEAD
     List<Shop> findByShopNameLikeAndSellerId(String keyword, int sellerId);
+=======
+    List<Shop> findByShopNameLikeAndSellerId(String keyword,int sellerId);
+>>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
     /**
      * 删除商铺
      * @param shopId
