@@ -1,10 +1,5 @@
 package com.example.shop.utils;
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -22,10 +17,7 @@ public class FileUtil {
      * @return 文件下载的url
      * @throws Exception
      */
-<<<<<<< HEAD
 
-=======
->>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
     public static String saveFile(MultipartFile file) throws Exception {
         if (file == null || file.isEmpty())
             return "";
@@ -39,7 +31,7 @@ public class FileUtil {
         String fileName = (Helper.bytesToHex(md.digest(),0,md.digest().length-1)) + "." + getPostfix(originalFilename);
         File file1 = new File(target.getPath() + "/" + fileName);
         Files.write(Paths.get(file1.toURI()), file.getBytes(), StandardOpenOption.CREATE_NEW);
-<<<<<<< HEAD
+
         return "/admin/product/img/" + fileName;
         //return "mall/admin/product/img/"
     }
@@ -68,11 +60,11 @@ public class FileUtil {
     }
 
 
-=======
-        return "/seller/shop/img/" + fileName;
-    }
 
->>>>>>> 1cb429456fccdb2f42c77c9ab7f1e1a4fbe40af1
+
+
+
+
     /**
      * 获得文件的后缀名
      *
